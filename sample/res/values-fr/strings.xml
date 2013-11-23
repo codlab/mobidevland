@@ -1,0 +1,34 @@
+<resources>
+	<string name="app_name">Conso Réseau</string>
+    <string name="activity_name">Visualisez votre conso réseau</string>
+    <string name="start">Démarrer</string>
+    <string name="stop">Arrêter</string>
+    
+    <string name="service_start">Démarrer l\'inspection</string>
+    <string name="service_stop">Stopper l\'inspection</string>
+    <string name="make_donation">Don</string>
+    <string name="dialog_donation_title">Don</string>
+    <string name="dialog_donation_message">Vous pouvez contribuer à cette application en effectuant un don</string>
+    <string name="dialog_donation_no_thx">Non merci</string>
+    <string name="dialog_donation_mini">Petit</string>
+    <string name="dialog_donation_max">Grand</string>
+    <string name="title_section_service">Service</string>
+    <string name="title_section_graph">Graphique</string>
+    <string name="purchased_don1">Merci d\'avoir effectué un don</string>
+    <string name="purchased_don2">Merci d\'avoir effectué un don</string>
+
+
+
+    <string name="preference_activity_title">Inspect Data Widget Settings</string>
+    <!-- Configuration text shown in preferences -->
+    <string name="configuration_text">Inspect Data Widget Settings</string>
+    <!-- Extension name, shown in preferences -->
+    <string name="extension_name">Inspect Data Widget</string>
+
+    <string name="extension_info">Inspect Data Widget</string>
+    <string name="preference_option_read_me">READ ME</string>
+    <string name="preference_key_read_me">preference_key_read_me</string>
+    <string name="preference_option_read_me_txt">This widget will give you infos about your current data information</string>
+    <string name="preference_key_clock_mode">preference_key_clock_mode</string>
+
+</resources>
