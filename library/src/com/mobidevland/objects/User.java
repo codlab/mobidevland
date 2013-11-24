@@ -27,10 +27,13 @@ public class User extends DbmsSimple{
     private String mMobile;
     private String mWebsite;
     private String mIcon;
+    private String mGps;
+    private String mExpertise;
 
     public User(long id, String login, String mail, String token, boolean admin, long created, long updated,
                 String company, String name, String last, String surn, String address, String pc,
-                String city, String state, String language, String phone, String mobile, String website, String icon){
+                String city, String state, String language, String phone, String mobile, String website, String icon,
+                String expertise, String gps){
         setId(id);
         setLogin(login);
         setMail(mail);
@@ -51,6 +54,8 @@ public class User extends DbmsSimple{
         setMobile(mobile);
         setWebsite(website);
         setIcon(icon);
+        setGps(gps);
+        setExpertise(expertise);
     }
 
     public void onJSON(JSONObject object){
@@ -194,6 +199,19 @@ public class User extends DbmsSimple{
         return mWebsite;
     }
 
+    public void setExpertise(String expertise){
+        mExpertise = expertise;
+    }
+    public String getExpertise(){
+        return mExpertise;
+    }
+
+    public void setGps(String gps){
+        mGps = gps;
+    }
+    public String getGps(){
+        return mGps;
+    }
     public void setIcon(String icon){
         mIcon = icon;
     }

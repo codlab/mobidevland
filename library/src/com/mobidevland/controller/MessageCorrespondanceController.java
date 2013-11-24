@@ -59,7 +59,6 @@ public class MessageCorrespondanceController {
     }
 
     public void addCorrespondance(JSONObject object){
-        //TODO from JSON
     }
 
     public void addCorrespondance(MessagesController controller){

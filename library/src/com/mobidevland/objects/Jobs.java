@@ -10,16 +10,17 @@ public class Jobs extends DbmsSimple {
     private String mUrl;
     private String mLocation;
     private String mDescription;
-    private String mCOmpany;
+    private String mCompany;
     private String mProfil;
     private String mPhoto;
 
     private long mDate;
     private long mCreated;
 
-    public Jobs(long id, String titre, String url, String location, String description, String profil, long creation, long date, String photo){
+    public Jobs(long id, String titre, String url, String location, String company, String description, String profil, long creation, long date, String photo){
         setId(id);
         setTitle(titre);
+        setCompany(company);
         setUrl(url);
         setLocation(location);
         setDescription(description);
@@ -53,6 +54,9 @@ public class Jobs extends DbmsSimple {
     public void setCreationDate(long set){
         mDate = set;
     }
+    public void setCompany(String company){
+        mCompany = company;
+    }
 
     public String getTitle(){
         return mTitle;
@@ -80,6 +84,14 @@ public class Jobs extends DbmsSimple {
 
     public String getPhoto(){
         return mPhoto;
+    }
+
+    public String getCompany(){
+        return mCompany;
+    }
+
+    public String getDescription(){
+        return mDescription;
     }
 
 

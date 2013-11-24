@@ -33,10 +33,10 @@ public class JobsController {
         if(mListeners==null)mListeners=new ArrayList<JobListener>();
         return mListeners;
     }
-    public void addEventsListener(JobListener listener){
+    public void addJobsListener(JobListener listener){
         if(!getJobsListener().contains(listener))getJobsListener().add(listener);
     }
-    public void removeEventsListener(JobListener listener){
+    public void removeJobsListener(JobListener listener){
         getJobsListener().remove(listener);
     }
 
@@ -58,10 +58,21 @@ public class JobsController {
         }
     }
     public void addJobs(JSONObject object){
-
+        long id=object.optLong("id");
+        String photo=object.optString("photo","");
+        long created=object.optLong("created",0);
+        long date=object.optLong("date",0);
+        String description=object.optString("description","");
+        String url=object.optString("url","");
+        String titre=object.optString("titre","");
+        String lieu=object.optString("lieu","");
+        String company=object.optString("company","");
+        String profil=object.optString("profil","");
+        Jobs advert = new Jobs(id, titre, url, lieu, company, description, profil, created, date, photo);
+        addJobs(advert);
     }
 
-    public void addUser(Jobs job){
+    public void addJobs(Jobs job){
         if(job != null && getJob(job.getId()) == null){
             mJobs.add(job);
 

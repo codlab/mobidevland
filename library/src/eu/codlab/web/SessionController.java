@@ -126,7 +126,7 @@ public class SessionController {
         @Override
         protected String doInBackground(String... arg0) {
             try {
-                final String res = DownloaderServiceObject.get(new URL(DownloaderServiceObject.getUrl() + "service/login?noredirect=true&login=" + _user + "&password=" + _password));
+                final String res = DownloaderServiceObject.get(new URL(DownloaderServiceObject.getUrl() + "api/login?noredirect=true&login=" + _user + "&password=" + _password));
                 if(res != null){
                     try{
                         JSONObject json = new JSONObject(res);
@@ -210,7 +210,7 @@ public class SessionController {
         @Override
         protected String doInBackground(String... arg0) {
             try {
-                final String res = DownloaderServiceObject.get(new URL(DownloaderServiceObject.getUrl() + "service/create?noredirect=true&login=" + _user + "&password=" + _password+"&name="+_name+"&lastname="+_lastname+"&firstname"+_firstname));
+                final String res = DownloaderServiceObject.get(new URL(DownloaderServiceObject.getUrl() + "api/users/create?noredirect=true&login=" + _user + "&email="+_mail+"&password=" + _password+"&name="+_name+"&lastname="+_lastname+"&firstname="+_firstname));
                 if(res != null){
                     try{
                         JSONObject json = new JSONObject(res);

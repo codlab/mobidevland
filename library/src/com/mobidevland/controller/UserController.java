@@ -69,9 +69,11 @@ public class UserController {
         String phone=object.optString("phone","");
         String mobile=object.optString("mobile","");
         String website=object.optString("website","");
+        String gps=object.optString("gps","");
+        String expertise=object.optString("expertise","");
         String icon=object.optString("icon","");
         User u = new User(id, login, mail, token, admin, created, updated, company, name, last,
-                surn, address, pc, city, state, language, phone, mobile, website, icon);
+                surn, address, pc, city, state, language, phone, mobile, website, icon,expertise,gps);
         addUser(u);
     }
 
