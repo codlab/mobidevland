@@ -67,7 +67,10 @@ public class DownloaderServiceObject {
         return getUrl()+"api/"+_token+"/";
     }
     private final void getUpdatedToken(){
-        _token = ServiceWeb.getService().getSharedPreferences("APPSHARED", 0).getString("token", "null");
+        _token = ServiceWeb.getService().getSharedPreferences(getSharedName(), 0).getString("token", "null");
+    }
+    public final static String getSharedName(){
+        return "APPSHARED";
     }
     public DownloaderServiceObject(){
     }

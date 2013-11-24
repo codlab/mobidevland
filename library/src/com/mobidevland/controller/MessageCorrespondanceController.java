@@ -97,7 +97,7 @@ public class MessageCorrespondanceController {
 
         and not looking for the users at each one...
          */
-        
+
         long id=object.optLong("id");
         long emitter=object.optLong("emitter",0);
         long receiver=object.optLong("receiver",0);
