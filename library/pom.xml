@@ -20,6 +20,89 @@
 			<artifactId>android</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>com.mobidevlandlogging</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/commons-logging-1.1.1.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mobidevlandcommons</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/commons-codec-1.6.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mobidevlandfluent</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/fluent-hc-4.2.5.jar</systemPath>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.mobidevlandhttpclient-cache</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/httpclient-cache-4.2.5.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mobidevlandhttpclient</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/httpclient-4.2.5.jar</systemPath>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.mobidevlandhttpcore</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/httpcore-4.2.4.jar</systemPath>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.mobidevlandhttpmime</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/httpmime-4.2.5.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mobidevlandgcm-src</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/gcm-src.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mobidevlandgcm</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/gcm.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mobidevlandplay</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/google-play-services.jar</systemPath>
+        </dependency>
 	</dependencies>
 
 	<build>

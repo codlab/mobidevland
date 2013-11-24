@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
     <version>2.4.1</version>
 
-    <name>MobiDevLand<</name>
+    <name>MobiDevLand</name>
     <description>Championnat de France de développement mobile.</description>
     <url>https://github.com/codlab/android_mobidevland</url>
     <inceptionYear>2013</inceptionYear>
