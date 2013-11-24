@@ -1,41 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    <FrameLayout
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-            android:gravity="center_vertical"
-        tools:ignore="UselessParent" >
+            android:layout_width="match_parent"
 
-        <Button
-            android:id="@+id/service_start"
-            android:layout_width="0dp"
-            android:background="#dddddd"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/service_start" />
-    </LinearLayout>
+            android:layout_height="match_parent"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-            android:gravity="center_vertical"
-        tools:ignore="UselessParent" >
+            android:layout_gravity="center_horizontal">
 
-        <Button
-            android:id="@+id/service_stop"
-            android:layout_width="0dp"
-            android:background="#dddddd"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/service_stop" />
-    </LinearLayout>
+        <include layout="@layout/capture"/>
 
+    </FrameLayout>
 </LinearLayout>

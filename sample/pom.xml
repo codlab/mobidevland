@@ -8,7 +8,7 @@
 	<packaging>apk</packaging>
 
 	<parent>
-		<groupId>eu.codlab.network</groupId>
+		<groupId>com.mobidevland</groupId>
 		<artifactId>parent</artifactId>
 		<version>2.4.1</version>
 		<relativePath>../pom.xml</relativePath>
@@ -21,43 +21,18 @@
 			<scope>provided</scope>
 		</dependency>
 
+        <dependency>
+            <groupId>com.mobidevland</groupId>
+            <artifactId>library</artifactId>
+            <version>${project.version}</version>
+            <type>apklib</type>
+        </dependency>
 		<dependency>
-			<groupId>eu.codlab.network</groupId>
-			<artifactId>library</artifactId>
+			<groupId>com.mobidevland</groupId>
+			<artifactId>zxing</artifactId>
 			<version>${project.version}</version>
 			<type>apklib</type>
 		</dependency>
-
-		<dependency>
-			<groupId>eu.codlab.network</groupId>
-			<artifactId>achartengine</artifactId>
-			<version>${project.version}</version>
-			<type>apklib</type>
-		</dependency>
-
-
-        <dependency>
-            <groupId>eu.codlab.network</groupId>
-            <artifactId>SmartExtensionAPI</artifactId>
-            <version>${project.version}</version>
-            <type>apklib</type>
-        </dependency>
-
-
-        <dependency>
-            <groupId>eu.codlab.network</groupId>
-            <artifactId>SmartExtensionUtils</artifactId>
-            <version>${project.version}</version>
-            <type>apklib</type>
-        </dependency>
-
-
-        <dependency>
-            <groupId>eu.codlab.network</groupId>
-            <artifactId>actionbarsherlock</artifactId>
-            <version>${project.version}</version>
-            <type>apklib</type>
-        </dependency>
 	</dependencies>
 
 	<build>
