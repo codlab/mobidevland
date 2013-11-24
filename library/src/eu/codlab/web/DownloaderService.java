@@ -10,6 +10,7 @@ import android.os.IBinder;
 public class DownloaderService extends Service {
     public static final String ACTION_SET_BLOB_USER = "eu.codlab.web.android.downloader.ACTION_SET_BLOB_USER";
     public static final String ACTION_DOWNLOAD_USER = "eu.codlab.web.android.downloader.ACTION_DOWNLOAD_USER";
+    public static final String ACTION_DOWNLOAD_CHAT = "eu.codlab.web.android.downloader.ACTION_DOWNLOAD_CHAT";
     public static final String ACTION_DOWNLOAD_USERS = "eu.codlab.web.android.downloader.ACTION_DOWNLOAD_USERS";
     public static final String ACTION_DOWNLOAD_NEWS = "eu.codlab.web.android.downloader.ACTION_DOWNLOAD_NEWS";
     public static final String ACTION_DOWNLOAD_EVENTS = "eu.codlab.web.android.downloader.ACTION_DOWNLOAD_EVENTS";

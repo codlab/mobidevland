@@ -1,4 +1,4 @@
-package eu.codlab.network.inspect.app;
+package com.mobidevland;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,9 @@ import com.android.vending.util.IabHelper.OnConsumeFinishedListener;
 import com.android.vending.util.IabResult;
 import com.android.vending.util.Inventory;
 import com.android.vending.util.Purchase;
+
+import eu.codlab.network.inspect.app.GraphFragment;
+import eu.codlab.network.inspect.app.StartFragment;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

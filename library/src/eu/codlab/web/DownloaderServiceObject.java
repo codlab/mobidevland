@@ -694,6 +694,72 @@ public class DownloaderServiceObject {
     }
 
 
+private long _last_download;
+    //Download User Data
+    private class AsyncDownloadChat extends AsyncTask<URL, Object, Object>{
+        private boolean _send_after;
+        public AsyncDownloadChat(){
+            _send_after = true;
+
+        }
+
+        public AsyncDownloadChat(boolean send_after){
+            _send_after = send_after;
+        }
+
+        @Override
+        protected Object doInBackground(URL... arg0) {
+            if(!_downloading){
+                _downloading = true;
+                log("Downloading user...");
+                getAndSendChat(true);
+                _downloading = false;
+            }
+            if(_send_after){
+                postDownloadChat();
+            }
+            return null;
+        }
+    }
+
+    public void getAndSendChat(boolean force){
+        try {
+            final String res = getParticipe(new URL(getUrlTokennized()+"user/list_chat"), force);
+            if(res != null){
+                try{
+                    JSONArray array = new JSONArray(res);
+                    if(array != null && array.length() > 0){
+                        JSONObject object = null;
+                        for(int i=0;i<array.length();i++){
+                            object = array.optJSONObject(i);
+                            if(object != null && object.has("created")){
+                                long created = object.optLong("created",0);
+                                if(created > _last_download)_last_download=created;
+                            }
+                        }
+                    }
+                    Intent intent = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+                    intent.setAction("chatjson");
+                    intent.putExtra("json", res);
+                    if(_handler != null)
+                        ServiceWeb.getService().onManageIntent(intent);
+                }catch(Exception e){}
+            }else{
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void forceDownloadChat(){
+        AsyncDownloadChat data = new AsyncDownloadChat(false);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            data.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        else
+            data.execute();
+    }
     public void forceDownloadUser(){
         AsyncDownloadUser data = new AsyncDownloadUser(false);
 
@@ -848,6 +914,19 @@ public class DownloaderServiceObject {
     };
 
 
+    private final Runnable _download_chat=new Runnable(){
+        @Override
+        public void run(){
+            AsyncDownloadChat data = new AsyncDownloadChat();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                data.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            else
+                data.execute();
+        }
+    };
+
+
     private final Runnable _download_users=new Runnable(){
         @Override
         public void run(){
@@ -889,6 +968,8 @@ public class DownloaderServiceObject {
         }
 
         if(intent == null){
+        }else if(DownloaderService.ACTION_DOWNLOAD_CHAT.equals(intent.getAction())){
+            this.forceDownloadChat();
         }else if(DownloaderService.ACTION_DOWNLOAD_USER.equals(intent.getAction())){
             this.forceDownloadUser();
         }else if(DownloaderService.ACTION_DOWNLOAD_USERS.equals(intent.getAction())){
@@ -923,7 +1004,13 @@ public class DownloaderServiceObject {
     }
 
     //TODO change timers AFTER HERE
-
+    Handler _chat;
+    private void postDownloadChat(){
+        synchronized (this){
+            if(_chat == null)_chat = new Handler();
+            _chat.postDelayed(_download_chat, 15000);
+        }
+    }
     private void postDownloadUser(){
         synchronized (this){
             if(_handler != null)

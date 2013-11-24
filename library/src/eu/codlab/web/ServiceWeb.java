@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.mobidevland.controller.AdvertsController;
+import com.mobidevland.controller.ChatController;
 import com.mobidevland.controller.EventsController;
 import com.mobidevland.controller.JobsController;
 import com.mobidevland.controller.MessageCorrespondanceController;
@@ -78,6 +79,13 @@ public class ServiceWeb extends Service {
                 Intent serviceIntent = new Intent(this, DownloaderService.class);
                 serviceIntent.setAction(DownloaderService.ACTION_DOWNLOAD_JOBS);
                 startService(serviceIntent);
+            } else if (intent.hasExtra("new_chat") && intent.hasExtra("message_text")) {
+                Notification notif = getNotification("Nouvelle message chat", "Un nouveau message vous attend");
+                NotificationManager _manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                _manager.notify(101, notif);
+                Intent serviceIntent = new Intent(this, DownloaderService.class);
+                serviceIntent.setAction(DownloaderService.ACTION_DOWNLOAD_CHAT);
+                startService(serviceIntent);
             } else if (intent.hasExtra("new_events") && intent.hasExtra("message_text")) {
                 Notification notif = getNotification("Nouvel event", intent.getExtras().getString("message_text"));
                 NotificationManager _manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -143,6 +151,16 @@ public class ServiceWeb extends Service {
                 try {
                     JSONArray json = new JSONArray(res);
                     UserController.getInstance().addUser(json);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } else if ("chatjson".equals(intent.getAction()) && intent.hasExtra("json")) {
+            String res = intent.getStringExtra("json");
+            if (res != null) {
+                try {
+                    JSONArray json = new JSONArray(res);
+                    ChatController.getInstance().addChat(json);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
