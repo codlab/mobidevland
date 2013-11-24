@@ -127,7 +127,7 @@ public class DownloaderServiceObject {
         Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
         i.setAction("userjson");
         i.putExtra("json", res);
-        if(_handler != null)
+        if(_handler != null && ServiceWeb.getService() != null)
             ServiceWeb.getService().onManageIntent(i);
     }
 
@@ -248,7 +248,7 @@ public class DownloaderServiceObject {
                 Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("advertsjson");
                 i.putExtra("json", res);
-                if(_handler != null)
+                if(_handler != null && ServiceWeb.getService() != null)
                     ServiceWeb.getService().onManageIntent(i);
 
                 //download adverts photo
@@ -324,7 +324,7 @@ public class DownloaderServiceObject {
                 Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("eventsjson");
                 i.putExtra("json", res);
-                if(_handler != null)
+                if(_handler != null && ServiceWeb.getService() != null)
                     ServiceWeb.getService().onManageIntent(i);
                 //download events photo
                 Thread t = new Thread(){
@@ -400,7 +400,7 @@ public class DownloaderServiceObject {
                 Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("jobsjson");
                 i.putExtra("json", res);
-                if(_handler != null)
+                if(_handler != null && ServiceWeb.getService() != null)
                     ServiceWeb.getService().onManageIntent(i);
 
                 //download job photo
@@ -486,7 +486,7 @@ public class DownloaderServiceObject {
         Intent intent = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
         intent.setAction("usersjson");
         intent.putExtra("json", users);
-        if(_handler != null)
+        if(_handler != null && ServiceWeb.getService() != null)
             ServiceWeb.getService().onManageIntent(intent);
         //download the users icon
         Thread t = new Thread(){
@@ -559,7 +559,7 @@ public class DownloaderServiceObject {
                 Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("jobsjson");
                 i.putExtra("json", res);
-                if(_handler != null)
+                if(_handler != null && ServiceWeb.getService() != null)
                     ServiceWeb.getService().onManageIntent(i);
                 //now download the different media in the messages
                 Thread t = new Thread(){
@@ -634,7 +634,7 @@ public class DownloaderServiceObject {
                 Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("participejson");
                 i.putExtra("json", res);
-                if(_handler != null)
+                if(_handler != null && ServiceWeb.getService() != null)
                     ServiceWeb.getService().onManageIntent(i);
             }else{
             }
@@ -681,6 +681,7 @@ public class DownloaderServiceObject {
                         Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                         i.setAction("userjson");
                         i.putExtra("json", res);
+                        if(ServiceWeb.getService() != null)
                         ServiceWeb.getService().onManageIntent(i);
 
                     }else{
@@ -746,7 +747,7 @@ private long _last_download;
                     Intent intent = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                     intent.setAction("chatjson");
                     intent.putExtra("json", res);
-                    if(_handler != null)
+                    if(_handler != null && ServiceWeb.getService() != null)
                         ServiceWeb.getService().onManageIntent(intent);
                 }catch(Exception e){}
             }else{
