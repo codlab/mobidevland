@@ -69,6 +69,9 @@ public class DownloaderServiceObject {
     private final void getUpdatedToken(){
         _token = ServiceWeb.getService().getSharedPreferences(getSharedName(), 0).getString("token", "null");
     }
+    private final boolean isConnected(){
+        return _token != null;
+    }
     public final static String getSharedName(){
         return "APPSHARED";
     }
@@ -102,7 +105,7 @@ public class DownloaderServiceObject {
                 _downloading = false;
             }
             if(_send_after){
-                postDownloadNews();
+                postDownloadUsers();//skip to users since connected
             }
             return null;
         }
@@ -945,8 +948,9 @@ private long _last_download;
         return null;
     }
 
+    private Handler _handler_connected;
+
     public int onStartCommand(Intent intent, int flags, int startId){
-        Log.d("DownloaderService", "start downloader");
         //update the token from the shared preferences
         getUpdatedToken();
 
@@ -955,15 +959,29 @@ private long _last_download;
 
         synchronized(this){
             if(_handler == null){
-                _user_cache_loaded = false;
                 _adverts_cache_loaded = false;
                 _news_cache_loaded = false;
                 _events_cache_loaded = false;
                 _job_cache_loaded = false;
+                _handler = new Handler();
+                _handler.post(this._download_advert);
+            }
+            if(isConnected() && _handler_connected == null){
+                _user_cache_loaded = false;
                 _message_cache_loaded = false;
                 _participe_cache_loaded = false;
-                _handler = new Handler();
-                _handler.post(this._download_user);
+                _handler_connected = new Handler();
+                _handler_connected.post(this._download_user);
+            }else if(!isConnected() && _handler_connected != null){
+                synchronized (this){
+                    Handler tmp = _handler_connected;
+                    if(tmp != null){
+                        tmp.removeCallbacks(this._download_user);
+                        tmp.removeCallbacks(this._download_message);
+                        tmp.removeCallbacks(this._download_participe);
+                        tmp.removeCallbacks(this._download_users);
+                    }
+                }
             }
         }
 
@@ -1013,8 +1031,8 @@ private long _last_download;
     }
     private void postDownloadUser(){
         synchronized (this){
-            if(_handler != null)
-                _handler.postDelayed(_download_user, _user_cache_loaded ? 1000 : 10);
+            if(_handler_connected != null)
+                _handler_connected.postDelayed(_download_user, _user_cache_loaded ? 1000 : 10);
         }
     }
     private void postDownloadAdverts(){
@@ -1048,20 +1066,20 @@ private long _last_download;
     }
     private void postDownloadUsers(){
         synchronized(this){
-            if(_handler != null)
-                _handler.postDelayed(_download_users, _users_cache_loaded ? 1000 : 10);
+            if(_handler_connected != null)
+                _handler_connected.postDelayed(_download_users, _users_cache_loaded ? 1000 : 10);
         }
     }
     private void postDownloadMessages(){
         synchronized (this){
-            if(_handler != null)
-                _handler.postDelayed(_download_message, _message_cache_loaded ? 1000 : 10);
+            if(_handler_connected != null)
+                _handler_connected.postDelayed(_download_message, _message_cache_loaded ? 1000 : 10);
         }
     }
     private void postDownloadParticipe(){
         synchronized (this){
-            if(_handler != null)
-                _handler.postDelayed(_download_participe, _participe_cache_loaded ? 120000 : 10);
+            if(_handler_connected != null)
+                _handler_connected.postDelayed(_download_participe, _participe_cache_loaded ? 120000 : 10);
         }
     }
 
@@ -1323,12 +1341,16 @@ private long _last_download;
             Handler tmp = _handler;
             _handler = null;
             if(tmp != null){
-                tmp.removeCallbacks(this._download_user);
                 tmp.removeCallbacks(this._download_advert);
                 tmp.removeCallbacks(this._download_events);
                 tmp.removeCallbacks(this._download_job);
-                tmp.removeCallbacks(this._download_message);
                 tmp.removeCallbacks(this._download_news);
+            }
+
+            tmp = _handler_connected;
+            if(tmp != null){
+                tmp.removeCallbacks(this._download_user);
+                tmp.removeCallbacks(this._download_message);
                 tmp.removeCallbacks(this._download_participe);
                 tmp.removeCallbacks(this._download_users);
             }
