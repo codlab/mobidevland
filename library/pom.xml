@@ -103,6 +103,21 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/google-play-services.jar</systemPath>
         </dependency>
+
+        <dependency>
+            <groupId>InMobiAdNetwork-3.7.1</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/InMobiAdNetwork-3.7.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>InMobiAdCommons-3.7.1</groupId>
+            <artifactId>jar</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/InMobiCommons-3.7.1.jar</systemPath>
+        </dependency>
 	</dependencies>
 
 	<build>
