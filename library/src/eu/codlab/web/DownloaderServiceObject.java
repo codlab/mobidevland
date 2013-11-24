@@ -64,11 +64,14 @@ public class DownloaderServiceObject {
         return getUrl()+"api/";
     }
     public static String getUrlTokennized(){
-        return getUrl()+"api/"+_token+"/";
+        return _token != null ? getUrl()+"api/"+_token+"/" : getUrl()+"api/";
     }
     private final void getUpdatedToken(){
-        _token = ServiceWeb.getService().getSharedPreferences(getSharedName(), 0).getString("token", "null");
+        if(ServiceWeb.getService() != null && ServiceWeb.getService().getSharedPreferences(getSharedName(),0) != null){
+            _token = ServiceWeb.getService().getSharedPreferences(getSharedName(), 0).getString("token", "null");
+        }
     }
+
     private final boolean isConnected(){
         return _token != null;
     }
