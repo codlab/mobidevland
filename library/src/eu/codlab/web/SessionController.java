@@ -37,6 +37,7 @@ public class SessionController {
      * Start the download service in not connected mode
      */
     public void startNotConnected(){
+        mContext.startService(new Intent(mContext, ServiceWeb.class));
         mContext.startService(new Intent(mContext, DownloaderService.class));
     }
 
