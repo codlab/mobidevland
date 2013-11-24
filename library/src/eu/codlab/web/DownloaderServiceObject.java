@@ -117,14 +117,14 @@ public class DownloaderServiceObject {
     public void getAndSendUser(boolean force){
         final String users;
         try {
-            getAndSendUsersAfter(getUser(new URL(getUrlTokennized()+"user/update?gcm_device="+ GCMRegistrar.getRegistrationId(ServiceWeb.getService().getApplicationContext())), force));
+            getAndSendUsersAfter(getUser(new URL(getUrlTokennized()+"user/update?gcm_device="+ GCMRegistrar.getRegistrationId(DownloaderService.getInstance().getApplicationContext())), force));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
     private void getAndSendUserAfter(String res){
         if(res == null)return;
-        Intent i = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+        Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
         i.setAction("userjson");
         i.putExtra("json", res);
         if(_handler != null)
@@ -168,10 +168,10 @@ public class DownloaderServiceObject {
             final String res = getNews(new URL(getUrlNotTokennized()+"news/list"), force);
             if(res != null){
                 //TODO download images
-                Intent i = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+                Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("newsjson");
                 i.putExtra("json", res);
-                if(_handler != null)
+                if(_handler != null && ServiceWeb.getService() != null)
                     ServiceWeb.getService().onManageIntent(i);
                 //DownloaderService.this.startService(i);
                 //download news photo
@@ -245,7 +245,7 @@ public class DownloaderServiceObject {
             final String res = getAdverts(new URL(getUrlNotTokennized()+"adverts/list"), force);
             if(res != null){
                 //TODO download images
-                Intent i = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+                Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("advertsjson");
                 i.putExtra("json", res);
                 if(_handler != null)
@@ -321,7 +321,7 @@ public class DownloaderServiceObject {
             final String res = getEvents(new URL(getUrlNotTokennized()+"events/list"), force);
             if(res != null){
                 //TODO download events
-                Intent i = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+                Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("eventsjson");
                 i.putExtra("json", res);
                 if(_handler != null)
@@ -397,7 +397,7 @@ public class DownloaderServiceObject {
             final String res = getJobs(new URL(getUrlNotTokennized()+"jobs/list"), force);
             if(res != null){
                 //TODO download images
-                Intent i = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+                Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("jobsjson");
                 i.putExtra("json", res);
                 if(_handler != null)
@@ -483,7 +483,7 @@ public class DownloaderServiceObject {
     }
     private void getAndSendUsersAfter(final String users){
         if(users == null)return;
-        Intent intent = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+        Intent intent = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
         intent.setAction("usersjson");
         intent.putExtra("json", users);
         if(_handler != null)
@@ -556,7 +556,7 @@ public class DownloaderServiceObject {
             final String res = getMessages(new URL(getUrlTokennized()+"user/list_messages"), force);
             if(res != null){
                 //TODO download images
-                Intent i = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+                Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("jobsjson");
                 i.putExtra("json", res);
                 if(_handler != null)
@@ -631,7 +631,7 @@ public class DownloaderServiceObject {
         try {
             final String res = getParticipe(new URL(getUrlTokennized()+"user/participation"), force);
             if(res != null){
-                Intent i = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+                Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                 i.setAction("participejson");
                 i.putExtra("json", res);
                 if(_handler != null)
@@ -678,7 +678,7 @@ public class DownloaderServiceObject {
                             }
                         }catch(Exception e){e.printStackTrace();}
 
-                        Intent i = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+                        Intent i = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                         i.setAction("userjson");
                         i.putExtra("json", res);
                         ServiceWeb.getService().onManageIntent(i);
@@ -743,7 +743,7 @@ private long _last_download;
                             }
                         }
                     }
-                    Intent intent = new Intent(ServiceWeb.getService(), ServiceWeb.class);
+                    Intent intent = new Intent(DownloaderService.getInstance(), ServiceWeb.class);
                     intent.setAction("chatjson");
                     intent.putExtra("json", res);
                     if(_handler != null)
@@ -1009,7 +1009,7 @@ private long _last_download;
         }else if(DownloaderService.ACTION_SET_BLOB_USER.equals(intent.getAction())){
             String blob = intent.getStringExtra("blob");
             String url = getUrlTokennized()+"user/update";
-            AsyncUploadBitmap data = new AsyncUploadBitmap(ServiceWeb.getService().getApplicationContext(), url, blob);
+            AsyncUploadBitmap data = new AsyncUploadBitmap(DownloaderService.getInstance().getApplicationContext(), url, blob);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
                 data.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -1088,7 +1088,7 @@ private long _last_download;
 
     private boolean _user_cache_loaded;
     public String getUser(URL url, boolean force){
-        Cache cache = new Cache(ServiceWeb.getService().getApplicationContext(),url.getPath(),120000);
+        Cache cache = new Cache(DownloaderService.getInstance().getApplicationContext(),url.getPath(),120000);
         if(!force && (!cache.shouldRecreate() || !_user_cache_loaded) && cache.exists()){
             _user_cache_loaded = true;
             return cache.read();
@@ -1106,7 +1106,7 @@ private long _last_download;
 
     boolean _adverts_cache_loaded;
     public String getAdverts(URL url, boolean force){
-        Cache cache = new Cache(ServiceWeb.getService().getApplicationContext(),url.getPath(),30000);
+        Cache cache = new Cache(DownloaderService.getInstance().getApplicationContext(),url.getPath(),30000);
         if(!force && (!cache.shouldRecreate() || !_adverts_cache_loaded) && cache.exists()){
             _adverts_cache_loaded = true;
             return cache.read();
@@ -1124,7 +1124,7 @@ private long _last_download;
 
     boolean _news_cache_loaded;
     public String getNews(URL url, boolean force){
-        Cache cache = new Cache(ServiceWeb.getService().getApplicationContext(),url.getPath(),30000);
+        Cache cache = new Cache(DownloaderService.getInstance().getApplicationContext(),url.getPath(),30000);
         if(!force && (!cache.shouldRecreate() || !_news_cache_loaded) && cache.exists()){
             _news_cache_loaded = true;
             return cache.read();
@@ -1142,7 +1142,7 @@ private long _last_download;
 
     boolean _events_cache_loaded;
     public String getEvents(URL url, boolean force){
-        Cache cache = new Cache(ServiceWeb.getService().getApplicationContext(),url.getPath(),30000);
+        Cache cache = new Cache(DownloaderService.getInstance().getApplicationContext(),url.getPath(),30000);
         if(!force && (!cache.shouldRecreate() || !_events_cache_loaded) && cache.exists()){
             _events_cache_loaded = true;
             return cache.read();
@@ -1160,7 +1160,7 @@ private long _last_download;
 
     boolean _job_cache_loaded;
     public String getJobs(URL url, boolean force){
-        Cache cache = new Cache(ServiceWeb.getService().getApplicationContext(),url.getPath(),30000);
+        Cache cache = new Cache(DownloaderService.getInstance().getApplicationContext(),url.getPath(),30000);
         if(!force && (!cache.shouldRecreate() || !_job_cache_loaded) && cache.exists()){
             _job_cache_loaded = true;
             return cache.read();
@@ -1178,7 +1178,7 @@ private long _last_download;
 
     private boolean _users_cache_loaded;
     public String getUsers(URL url, boolean force){
-        Cache cache = new Cache(ServiceWeb.getService().getApplicationContext(),url.getPath(),240000);
+        Cache cache = new Cache(DownloaderService.getInstance().getApplicationContext(),url.getPath(),240000);
         if(!force && (!cache.shouldRecreate() || !_users_cache_loaded) && cache.exists()){
             _users_cache_loaded = true;
             return cache.read();
@@ -1196,7 +1196,7 @@ private long _last_download;
 
     boolean _message_cache_loaded;
     public String getMessages(URL url, boolean force){
-        Cache cache = new Cache(ServiceWeb.getService().getApplicationContext(),url.getPath(),30000);
+        Cache cache = new Cache(DownloaderService.getInstance().getApplicationContext(),url.getPath(),30000);
         if(!force && (!cache.shouldRecreate() || !_message_cache_loaded) && cache.exists()){
             _message_cache_loaded = true;
             return cache.read();
@@ -1214,7 +1214,7 @@ private long _last_download;
 
     boolean _participe_cache_loaded;
     public String getParticipe(URL url, boolean force){
-        Cache cache = new Cache(ServiceWeb.getService().getApplicationContext(),url.getPath(),30000);
+        Cache cache = new Cache(DownloaderService.getInstance().getApplicationContext(),url.getPath(),30000);
         if(!force && (!cache.shouldRecreate() || !_participe_cache_loaded) && cache.exists()){
             _participe_cache_loaded = true;
             return cache.read();
@@ -1231,7 +1231,7 @@ private long _last_download;
     }
 
     public void getImage(String url, int refresh_time, String path){
-        Cache cache = new Cache(ServiceWeb.getService().getApplicationContext(),url,refresh_time);
+        Cache cache = new Cache(DownloaderService.getInstance().getApplicationContext(),url,refresh_time);
         if(!cache.exists() || cache.shouldRecreate()){
             try{
                 if(url.startsWith("/")){
