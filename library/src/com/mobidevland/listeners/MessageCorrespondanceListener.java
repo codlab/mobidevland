@@ -1,7 +1,6 @@
 package com.mobidevland.listeners;
 
 import com.mobidevland.controller.MessagesController;
-import com.mobidevland.objects.Message;
 import com.mobidevland.objects.User;
 
 /**

@@ -681,7 +681,6 @@ public class DownloaderServiceObject {
                         ServiceWeb.getService().onManageIntent(i);
 
                     }else{
-                        //TODO manage network state !
                     }
 
                     forceDownloadMessages();
@@ -1061,7 +1060,7 @@ private long _last_download;
         //reset a new pack of download every 4mins
         synchronized (this){
             if(_handler != null)
-                _handler.postDelayed(_download_job, _job_cache_loaded ? 1000 : 10);
+                _handler.postDelayed(_download_job, _job_cache_loaded ? 60000 : 10);
         }
     }
     private void postDownloadUsers(){

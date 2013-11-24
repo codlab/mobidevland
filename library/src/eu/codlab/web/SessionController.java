@@ -4,16 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.widget.TextView;
-
-import com.mobidevland.library.R;
 
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 
 /**
  * Created by kevinleperf on 24/11/2013.
@@ -32,7 +28,7 @@ public class SessionController {
 
     }
 
-    public SessionController getInstance(Context context){
+    public static SessionController getInstance(Context context){
         if(mThis == null)mThis = new SessionController(context);
         return mThis;
     }

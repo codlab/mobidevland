@@ -1,5 +1,7 @@
 package com.mobidevland.objects;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by kevinleperf on 23/11/2013.
  */
@@ -35,5 +37,10 @@ public class Participe extends DbmsSimple{
 
     public long getEvent(){
         return mEvent;
+    }
+
+    @Override
+    public Bitmap getBitmap() {
+        return null;
     }
 }

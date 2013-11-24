@@ -1,10 +1,7 @@
 package com.mobidevland.controller;
 
 import com.mobidevland.listeners.ChatListener;
-import com.mobidevland.listeners.MessageListener;
 import com.mobidevland.objects.Chat;
-import com.mobidevland.objects.Message;
-import com.mobidevland.objects.User;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

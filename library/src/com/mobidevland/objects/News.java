@@ -2,8 +2,6 @@ package com.mobidevland.objects;
 
 import android.graphics.Bitmap;
 
-import eu.codlab.web.Cache;
-import eu.codlab.web.ServiceWeb;
 
 /**
  * Created by kevinleperf on 23/11/2013.

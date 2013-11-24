@@ -1,7 +1,6 @@
 package com.mobidevland.listeners;
 
 import com.mobidevland.objects.Chat;
-import com.mobidevland.objects.Message;
 import com.mobidevland.objects.User;
 
 /**

@@ -1,9 +1,7 @@
 package com.mobidevland.controller;
 
 import com.mobidevland.listeners.AdvertListener;
-import com.mobidevland.listeners.NewsListener;
 import com.mobidevland.objects.Adverts;
-import com.mobidevland.objects.News;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

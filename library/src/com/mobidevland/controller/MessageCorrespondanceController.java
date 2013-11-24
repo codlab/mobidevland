@@ -1,8 +1,6 @@
 package com.mobidevland.controller;
 
-import com.mobidevland.listeners.AdvertListener;
 import com.mobidevland.listeners.MessageCorrespondanceListener;
-import com.mobidevland.objects.Adverts;
 import com.mobidevland.objects.Message;
 import com.mobidevland.objects.User;
 

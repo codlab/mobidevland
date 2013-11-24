@@ -4,11 +4,6 @@ import android.graphics.Bitmap;
 
 import org.json.JSONObject;
 
-import eu.codlab.web.Cache;
-import eu.codlab.web.DownloaderService;
-import eu.codlab.web.DownloaderServiceObject;
-import eu.codlab.web.ServiceWeb;
-
 /**
  * Created by kevinleperf on 23/11/2013.
  */

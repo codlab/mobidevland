@@ -1,8 +1,6 @@
 package com.mobidevland.controller;
 
-import com.mobidevland.listeners.EventListener;
 import com.mobidevland.listeners.JobListener;
-import com.mobidevland.objects.Events;
 import com.mobidevland.objects.Jobs;
 
 import org.json.JSONArray;

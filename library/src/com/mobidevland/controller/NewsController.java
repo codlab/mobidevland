@@ -2,7 +2,6 @@ package com.mobidevland.controller;
 
 import com.mobidevland.listeners.NewsListener;
 import com.mobidevland.objects.News;
-import com.mobidevland.objects.User;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
